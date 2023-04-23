@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 /*
@@ -35,68 +35,55 @@ caso eu usasse as habilidades:
 
 function App() {
 
+
   const [data, setData] = useState([]);
-  let id = 0;
-  let apiUrl = ``
 
-  for (let index = 0; index <= 20; index++) {
-    id += index  
-    apiUrl = `https://pokeapi.co/api/v2/pokemon/${id}/`;
-  }
-
-  
-
-  axios.get(apiUrl)
-    .then(response => {
-      setData(response.data)
-      console.log(response.data);
-    })
-    .catch(error => {
-      console.log(error);
-    })
-
-
-
+  useEffect(() => {
+    const promises = [];
+    for (let id = 1; id <= 20; id++) {
+      const promise = axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
+      promises.push(promise);
+    } // cada dado (poke id) buscado, será jogado pro array promises
+    Promise.all(promises)
+      .then((responses) => {
+        const pokemonData = responses.map((response) => response.data);
+        setData(pokemonData);
+        console.log(pokemonData);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
 
   return (
     <>
-    
-     <h1>POKEMÓNS</h1>
-     <hr/>
+
+
+      <div className="logo-space"><img className='logo' src="https://i0.wp.com/multarte.com.br/wp-content/uploads/2019/03/pokemon-png-logo.png?fit=2000%2C736&ssl=1" alt="" /></div>
+
       <div className="wrapper">
-        <div className="pokemon-card">
-          <div className="pokemon-image-container">
-            <img className='pokemon-image' src={data.sprites?.front_default} alt={data.name} />
+        {data.map((pokemon) => (
+          <div key={pokemon.id} className="pokemon-card">
+            <div className="pokemon-image-container">
+              <img
+                className="pokemon-image"
+                src={pokemon.sprites.front_default}
+                alt={pokemon.name}
+              />
+            </div>
+            <div className="pokemon-info-container">
+              <h2 className="pokemon-name">{pokemon.name}</h2>
+              <p className="pokemon-experience">
+                Experience: {pokemon.base_experience}
+              </p>
+            </div>
           </div>
-          <div className="pokemon-info-container">
-            <h2 className="pokemon-name">{data.name}</h2>
-            <p className="pokemon-experience">Experience: {data.base_experience}</p>
-          </div>
-        </div>
-        <div className="pokemon-card">
-          <div className="pokemon-image-container">
-            <img className='pokemon-image' src={data.sprites?.front_default} alt={data.name} />
-          </div>
-          <div className="pokemon-info-container">
-            <h2 className="pokemon-name">{data.name}</h2>
-            <p className="pokemon-experience">Experience: {data.base_experience}</p>
-          </div>
-        </div>
-        <div className="pokemon-card">
-          <div className="pokemon-image-container">
-            <img className='pokemon-image' src={data.sprites?.front_default} alt={data.name} />
-          </div>
-          <div className="pokemon-info-container">
-            <h2 className="pokemon-name">{data.name}</h2>
-            <p className="pokemon-experience">Experience: {data.base_experience}</p>
-          </div>
-        </div>
+        ))}
       </div>
 
-      
-
     </>
+
 
 
   );
