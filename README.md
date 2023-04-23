@@ -2,9 +2,11 @@
 
 ## React Interview Challenge #05
 
-<p align="center">
-    <img src= alt="Descrição do GIF">
-</p>
+<br>
+
+![image](https://user-images.githubusercontent.com/112510971/233846003-aa7928bd-6222-4eb9-8b8b-f3175ba84f3b.png)
+
+<br>
 
 <hr> 
 
