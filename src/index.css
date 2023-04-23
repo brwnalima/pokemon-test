@@ -32,7 +32,7 @@ hr {
   width: 300px;
   height: 400px;
   background-color: #f5f5f5;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.361);
   border-radius: 5px;
   display: flex;
   flex-direction: column;
@@ -105,3 +105,26 @@ hr {
   font-size: 16px;
   margin-bottom: 5px;
 }
+
+@media (max-width: 768px) {
+  .pokemon-card {
+    width: 60%;
+    height: 50vh;
+  }
+
+  .logo-space {
+    display: flex;
+    justify-content: center;
+    padding: 50px 100px 80px;
+  }
+  
+  .logo {
+    width: 150%;
+    height: 90%;
+  }
+
+}
+
+
+
+

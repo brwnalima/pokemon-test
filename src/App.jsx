@@ -15,7 +15,7 @@ https://pokeapi.co/api/v2/pokemon/:id
 
 
 DICA:
-imagem => sprites.front_default
+imagem => sprites.front_default // estava errado, dava erro e usei 
 experiência => base_experience
 
 EXTRA: se puder ordene por nome.
@@ -40,13 +40,14 @@ function App() {
 
   useEffect(() => {
     const promises = [];
-    for (let id = 1; id <= 20; id++) {
+    for (let id = 1; id <= 52; id++) {
       const promise = axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
       promises.push(promise);
     } // cada dado (poke id) buscado, será jogado pro array promises
     Promise.all(promises)
       .then((responses) => {
         const pokemonData = responses.map((response) => response.data);
+        pokemonData.sort((a, b) => a.name.localeCompare(b.name)); // ordem alfabetica
         setData(pokemonData);
         console.log(pokemonData);
       })
