@@ -11,7 +11,7 @@ Você deve exibir, de cada pokémon:
 - experiência
 
 Você pode acessar as informações de cada pokemón individualmente em:
-https://pokeapi.co/api/v2/pokemon/:id
+https://pokeapi.co/api/v2/pokemon/:id < o id é um parâmetro de url
 
 
 DICA:
@@ -19,6 +19,8 @@ imagem => sprites.front_default // estava errado, dava erro e usei
 experiência => base_experience
 
 EXTRA: se puder ordene por nome.
+
+ELE FEZ DIF
 
 -----
 
@@ -38,6 +40,7 @@ function App() {
 
   const [data, setData] = useState([]);
 
+  // o hook renderiza todos os dados recebidos
   useEffect(() => {
     const promises = [];
     for (let id = 1; id <= 52; id++) {
