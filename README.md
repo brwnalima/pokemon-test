@@ -19,6 +19,7 @@
 
 * CSS alternativo ✅</p> 
 * README Detalhado. ✅</p>
+* Animations ✅
 
 ### Clone este repositório:
 
