@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Slide, Fade } from "react-awesome-reveal";
 
 /*
 Consuma a API e liste todos os pokemons da consulta do seguinte endpoint. 
@@ -43,7 +44,7 @@ function App() {
   // o hook renderiza todos os dados recebidos
   useEffect(() => {
     const promises = [];
-    for (let id = 1; id <= 52; id++) {
+    for (let id = 1; id <= 54; id++) {
       const promise = axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
       promises.push(promise);
     } // cada dado (poke id) buscado, será jogado pro array promises
@@ -64,27 +65,31 @@ function App() {
     <>
 
 
-      <div className="logo-space"><img className='logo' src="https://i0.wp.com/multarte.com.br/wp-content/uploads/2019/03/pokemon-png-logo.png?fit=2000%2C736&ssl=1" alt="" /></div>
+      <Fade duration={3200}>
+        <div className="logo-space"><img className='logo' src="https://i0.wp.com/multarte.com.br/wp-content/uploads/2019/03/pokemon-png-logo.png?fit=2000%2C736&ssl=1" alt="" /></div>
+      </Fade>
 
-      <div className="wrapper">
-        {data.map((pokemon) => (
-          <div key={pokemon.id} className="pokemon-card">
-            <div className="pokemon-image-container">
-              <img
-                className="pokemon-image"
-                src={pokemon.sprites.front_default}
-                alt={pokemon.name}
-              />
+      <Slide duration={3000}>
+        <div className="wrapper">
+          {data.map((pokemon) => (
+            <div key={pokemon.id} className="pokemon-card">
+              <div className="pokemon-image-container">
+                <img
+                  className="pokemon-image"
+                  src={pokemon.sprites.front_default}
+                  alt={pokemon.name}
+                />
+              </div>
+              <div className="pokemon-info-container">
+                <h2 className="pokemon-name">{pokemon.name}</h2>
+                <p className="pokemon-experience">
+                  Experience: {pokemon.base_experience}
+                </p>
+              </div>
             </div>
-            <div className="pokemon-info-container">
-              <h2 className="pokemon-name">{pokemon.name}</h2>
-              <p className="pokemon-experience">
-                Experience: {pokemon.base_experience}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </Slide>
 
     </>
 

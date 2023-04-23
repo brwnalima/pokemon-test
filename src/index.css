@@ -26,11 +26,12 @@ hr {
   gap: 10px;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  gap: 15px;
 }
 
 .pokemon-card {
-  width: 300px;
-  height: 400px;
+  width: 200px;
+  height: 290px;
   background-color: #f5f5f5;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.361);
   border-radius: 5px;
@@ -39,7 +40,6 @@ hr {
   justify-content: space-between;
   overflow: hidden;
   border: 3px solid #2a75bb;
-  
 }
 
 
@@ -108,8 +108,8 @@ hr {
 
 @media (max-width: 768px) {
   .pokemon-card {
-    width: 60%;
-    height: 50vh;
+    width: 45%;
+    height: 40vh;
   }
 
   .logo-space {
